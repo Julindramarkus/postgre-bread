@@ -1,11 +1,25 @@
+
+
 const {Client} = require('pg')
+
+var types = require('pg').types;
+
+types.setTypeParser(1114, function(stringValue) {
+return stringValue;
+});
+
+
+types.setTypeParser(1114,function(stringValue){
+  return stringValue;
+})
+
 
 class Bread {
   constructor() {
     this.client = new Client({
       user: 'postgres',
       host: 'localhost',
-      database: 'bread',
+      database: 'test',
       password: null,
       port: 5432,
     })
@@ -160,7 +174,8 @@ class Bread {
 
 let bread = new Bread();
 
+// bread.createTable()
 // bread.readAll();
 // bread.findById(78529)
-// bread.add("haish",2,3.4,"2017-08-9",true)
-export {Bread as default}
+bread.add("haish",2,3.4,"2017-08-9",true)
+// export {Bread as default}

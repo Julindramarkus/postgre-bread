@@ -13,7 +13,7 @@ class Bread {
   }
 
   createTable(){
-    this.client.query('CREATE TABLE IF NOT EXISTS data(dataID serial PRIMARY KEY,string TEXT NOT NULL,integer INTEGER NOT NULL,float FLOAT NOT NULL,date DATE NOT NULL, boolean BOOLEAN NOT NULL);',(err, res) => {
+    this.client.query('CREATE TABLE IF NOT EXISTS data(dataID serial PRIMARY KEY,string TEXT NOT NULL,integer INTEGER NOT NULL,float FLOAT NOT NULL,date TEXT NOT NULL, boolean BOOLEAN NOT NULL);',(err, res) => {
         if(err)console.log(err);
 
     })
@@ -173,5 +173,6 @@ class Bread {
 }
 
 // let bread = new Bread()
+// bread.createTable()
 // bread.pageIndexFilter("","","","","","","Choose the boolean ...",0);
 export {Bread as default}

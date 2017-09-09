@@ -5,6 +5,7 @@ const app = express();
 const path = require("path")
 const bodyParser = require("body-parser")
 const {Client} = require('pg')
+const moment = require('moment');
 
 let bread = new Bread();
 
@@ -56,7 +57,8 @@ app.get("/", function(req, res) {
           boolean:"",
           url:"",
           filter:"",
-          queryLength:queryLength
+          queryLength:queryLength,
+          moment:moment
         });
       });
     });
@@ -111,7 +113,8 @@ app.get("/", function(req, res) {
                 checkbox_date:checkbox_date,
                 url:currentUrl,
                 filter:"filter",
-                queryLength:queryLength
+                queryLength:queryLength,
+                moment:moment
               });
             }
           );
@@ -154,7 +157,8 @@ app.get("/", function(req, res) {
                 boolean:"",
                 url:"",
                 filter:"",
-                queryLength:queryLength
+                queryLength:queryLength,
+                moment:moment
               });
             }
           );
