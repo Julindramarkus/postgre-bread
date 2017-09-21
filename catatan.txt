@@ -1,0 +1,13 @@
+buka folder, klik kanan kemudian open terminal dan ketik: npm init
+
+buat folder model, view, controller, dan public/assests
+
+buat file index.js dalam folder controller sebagai fil server
+
+install express (npm install express --save)
+
+install body parser (npm install body-parser --save)
+
+install nodemon (npm install nodemon --save)
+
+install npm install ejs --save
