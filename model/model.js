@@ -8,7 +8,7 @@ const pool = new Pool(
     database: 'breaddb',
     password: '12345',
     port: 5432,
-})
+});
 
 function filterQuery(userQuery, command, limit, offset) {
   let sqlQuery = ''
@@ -47,13 +47,9 @@ function filterQuery(userQuery, command, limit, offset) {
     isFilter = true;
   }
   if(isFilter){
-    sqlQuery += ' WHERE ' + filterQuery.join(' AND ')
+    sqlQuery += ' WHERE ' + filterQuery.join(' AND ');
   }
-
-  if(command === 'getTableDataCount') {
-    //sqlQuery += ` LIMIT ${limit} OFFSET ${offset};`
-  }
-  else if(command === 'getTableData') {
+  if(command === 'getTableData') {
     sqlQuery += ` ORDER BY id LIMIT ${limit} OFFSET ${offset};`
   }
   return sqlQuery;
@@ -63,7 +59,7 @@ function getTableDataCount(cb, userQuery, limit, offset) {
   let filteredQuery = filterQuery(userQuery, "getTableDataCount", limit, offset)
   pool.query(filteredQuery, (err, res) => {
     cb(res.rows[0].count)
-  })
+  });
 }
 
 function getTableData(cb, userQuery, limit, offset) {
