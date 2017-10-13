@@ -55,6 +55,22 @@ app.get('/',function(req, res){
     bagianWhere.push(`boolean='${req.query.boolean}'`);
     filter = true;
   }
+
+  if(req.query.check_boolean && req.query.boolean){
+    filter.push(`booleandata = '${JSON.parse(req.query.boolean) ? 'true' : 'false'}'`);
+    isFilter = true;
+  }
+  let get_links = req.originalUrl;
+var the_arr = get_links.split('&page');
+if(get_links.includes("?page"))
+the_arr = get_links.split('?page');
+let get_link = the_arr[0];
+
+if(get_link.length > 1){
+  get_link = get_link + "&";
+}else {
+  get_link = get_link + "?";
+}
   let sql = 'SELECT count(id) AS totalRecord FROM data ';
   if (filter){
     sql += ' WHERE ' + bagianWhere.join('AND');
@@ -83,7 +99,7 @@ app.get('/',function(req, res){
       }
 
       res.render('list', {title:"BREAD", data: data.rows,
-      halaman:halaman,limit: limit, offset: offset, jumlahHalaman: jumlahHalaman,total:total, url: url, query: req.query });
+      halaman:halaman,get_link:get_link,limit: limit, offset: offset, jumlahHalaman: jumlahHalaman,total:total, url: url, query: req.query });
 
     });
   });
